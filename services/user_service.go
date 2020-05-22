@@ -1,8 +1,9 @@
 package services
 
 import (
+	"LoginAndChatTask/common"
 	"LoginAndChatTask/model"
-	"LoginAndChatTask/model/common"
+	"LoginAndChatTask/server"
 	"strings"
 )
 
@@ -14,12 +15,6 @@ type UserLogin struct {
 	SessionId string `json:"sessionId"`
 	IsActive  bool   `json:"isActive"`
 }
-
-type Deactivate struct {
-	Email    string `gorm:"type:varchar(100);unique_index"`
-	IsActive bool
-}
-
 func (self *UserLogin) Format() *UserLogin {
 	self.Email = strings.ToLower(self.Email)
 	return self
@@ -51,10 +46,19 @@ func (self *UserLogin) ValidateLogin() (string, *User) {
 
 func (self *User) FindByEmail(mail string) (error, *User) {
 	newUser := &User{}
-	queryResult := common.Conn().Where(&User{Email: mail}).First(newUser)
+	queryResult := server.Conn().Where(&User{Email: mail}).First(newUser)
 	if queryResult.Error != nil {
 		return queryResult.Error, nil
 	} else {
 		return nil, newUser
 	}
+}
+
+func (self *User) UpdateUser(email string) interface{} {
+	if queryResult := server.Conn().Model(&self).Where("email = ?", email).Updates(map[string]interface{}{
+		"sessionId":        &self.SessionId,
+	}); queryResult.Error != nil {
+		return queryResult.Error.Error()
+	}
+	return nil
 }

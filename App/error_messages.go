@@ -72,4 +72,3 @@ func Logger(msg, errType string) *zap.Logger {
 
 	}
 }
-
