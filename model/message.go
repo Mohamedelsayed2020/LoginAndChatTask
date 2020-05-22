@@ -1,10 +1,13 @@
 package model
 
+import "time"
+
 // Define our message object
 type Message struct {
-	Email    string `json:"email"`
-	Username string `json:"username"`
-	Message  string `json:"message"`
+	Id        int       `json:"id"`
+	Message   string    `json:"message"`
+	CreatedAt time.Time `gorm:"column:createdAt"json:"createdAt"`
+	UpdatedAt time.Time `gorm:"column:updatedAt"json:"updatedAt"`
 }
 
 func NewMessage() *Message {

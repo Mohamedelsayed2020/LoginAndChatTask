@@ -2,12 +2,13 @@ package migration
 
 import (
 	"LoginAndChatTask/model"
+	"LoginAndChatTask/server"
 	"fmt"
 	"github.com/spf13/cobra"
-	"LoginAndChatTask/model/common"
 	"log"
 	"os"
 )
+
 var command = &cobra.Command{}
 
 var migrate = &cobra.Command{
@@ -21,18 +22,21 @@ var migrate = &cobra.Command{
 		models := args[0]
 		switch models {
 		case "user":
-			common.Conn().AutoMigrate(&model.User{})
+			server.Conn().AutoMigrate(&model.User{})
+		case "session":
+			server.Conn().AutoMigrate(&model.Session{})
+		case "message":
+			server.Conn().AutoMigrate(&model.Message{})
 		default:
 			fmt.Println("This model hasn't created yet :(")
 		}
 		log.Println("Successfully Migrated :)")
-		},
+	},
 }
 
 func init() {
 	command.AddCommand(migrate)
 }
-
 
 func Execute() {
 	if err := command.Execute(); err != nil {
