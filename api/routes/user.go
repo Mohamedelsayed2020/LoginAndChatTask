@@ -17,8 +17,8 @@ func Routes()  {
 	r.HandleFunc("/user/{id}", user.GetUser).Methods("Get")
 	r.HandleFunc("/user/{id}", user.UpdateUser).Methods("PUT")
 	r.HandleFunc("/user/login", user.Login).Methods("POST")
-	http.Handle("/", sr)
-	http.HandleFunc("/ws", common.HandleConnections)
+	r.Handle("/", sr)
+	r.HandleFunc("/ws", common.HandleConnections)
 
 	http.ListenAndServe(":8080", r)
 }
