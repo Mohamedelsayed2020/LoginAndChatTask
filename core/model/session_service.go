@@ -1,7 +1,7 @@
 package model
 
 import (
-	"LoginAndChatTask/server"
+	"LoginAndChatTask/api/server"
 	"github.com/google/uuid"
 )
 

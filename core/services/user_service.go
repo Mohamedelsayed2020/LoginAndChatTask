@@ -1,9 +1,9 @@
 package services
 
 import (
-	"LoginAndChatTask/common"
-	"LoginAndChatTask/model"
-	"LoginAndChatTask/server"
+	"LoginAndChatTask/api/server"
+	"LoginAndChatTask/core/common"
+	"LoginAndChatTask/core/model"
 	"strings"
 )
 

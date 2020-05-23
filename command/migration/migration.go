@@ -1,8 +1,9 @@
 package migration
 
 import (
-	"LoginAndChatTask/model"
-	"LoginAndChatTask/server"
+	"LoginAndChatTask/api/server"
+	"LoginAndChatTask/core/common"
+	"LoginAndChatTask/core/model"
 	"fmt"
 	"github.com/spf13/cobra"
 	"log"
@@ -18,6 +19,10 @@ var migrate = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) < 1 {
 
+		}
+		db := server.Conn().Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";")
+		if db.Error != nil {
+			common.Logger("error=========","")
 		}
 		models := args[0]
 		switch models {

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"LoginAndChatTask/App"
-	"LoginAndChatTask/model"
+	"LoginAndChatTask/core/common"
+	"LoginAndChatTask/core/model"
 	"github.com/go-chi/chi"
 	"net/http"
 )
@@ -12,12 +12,12 @@ func IsLogged(f http.HandlerFunc) http.HandlerFunc {
 		var user model.User
 		sessionId := chi.URLParam(r, "SessionId")
 		if sessionId == "" {
-			App.Logger("error", sessionId)
+			common.Logger("error", sessionId)
 			return
 		}
 		session := user.IsSessionExist(sessionId)
 		if !session {
-			App.Logger("error", "")
+			common.Logger("error", "")
 			return
 		}
 		f(w, r)

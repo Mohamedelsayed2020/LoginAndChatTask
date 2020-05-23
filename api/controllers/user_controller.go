@@ -1,18 +1,17 @@
 package controllers
 
 import (
-	"LoginAndChatTask/App"
-	"LoginAndChatTask/common"
-	"LoginAndChatTask/model"
-	"LoginAndChatTask/server"
-	"LoginAndChatTask/services"
+	"LoginAndChatTask/api/server"
+	"LoginAndChatTask/core/common"
+	"LoginAndChatTask/core/model"
+	"LoginAndChatTask/core/services"
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"net/http"
 )
 
 type UserController struct {
-	App.Controller
+	common.Controller
 }
 
 func (self UserController) CreateUser(w http.ResponseWriter, r *http.Request) {

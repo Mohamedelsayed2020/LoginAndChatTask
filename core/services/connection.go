@@ -1,8 +1,8 @@
 package services
 
 import (
-	"LoginAndChatTask/model"
-	"LoginAndChatTask/server"
+	"LoginAndChatTask/core/model"
+	"LoginAndChatTask/api/server"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"log"

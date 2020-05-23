@@ -1,4 +1,4 @@
-package App
+package common
 
 import (
 	"encoding/json"
@@ -7,8 +7,6 @@ import (
 )
 
 type Controller struct{}
-
-// @todo extract the file to app.go
 
 type Log struct {
 	Status  int

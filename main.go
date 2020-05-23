@@ -1,7 +1,7 @@
 package main
 
 import (
-	"LoginAndChatTask/routes"
+	"LoginAndChatTask/api/routes"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"LoginAndChatTask/controllers"
-	"LoginAndChatTask/services"
+	"LoginAndChatTask/api/controllers"
+	"LoginAndChatTask/core/services"
 	"html/template"
 	"log"
 	"net/http"
