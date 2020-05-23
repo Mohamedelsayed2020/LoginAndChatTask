@@ -3,6 +3,7 @@ package services
 import (
 	"LoginAndChatTask/model"
 	"LoginAndChatTask/server"
+	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -35,8 +36,10 @@ func (c *connection) writer(wg *sync.WaitGroup, wsConn *websocket.Conn) {
 			break
 		}
 		msg.Message = string(message)
+		msg.Id=uuid.New()
 		server.Conn().Create(msg)
 	}
+
 }
 
 var upgrader = &websocket.Upgrader{ReadBufferSize: 1024, WriteBufferSize: 1024}
